@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>AJAX REST API</title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/font-awesome-5.6.3.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/mdb.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">AJAX REST API</a>
+    </nav>
+
+    <!-- Button Section -->
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col text-center">
+                <button class="btn btn-success" id="getBtn">GET</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#postBtn-mdl-Id-1" id="postBtn">POST</button>
+                <button class="btn btn-warning" id="putBtn">PUT</button>
+                <button class="btn btn-danger" id="delBtn">DELETE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="container mt-3 mb-3">
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover text-center table-secondary table-striped">
+                    <thead class="bg-secondary text-white">
+                        <tr>
+                            <th>Emp ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email Id</th>
+                            <th>Gender</th>
+                            <th>Ip Address</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body" class="bg-dark text-white">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="postBtn-mdl-Id-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- modal header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add New Employee Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- modal body -->
+                <div class="modal-body">
+                    <form class="postForm" id="postForm" action="http://127.0.0.1:3000/api/employees/">
+                        <input type="text" name="" id="firstName" placeholder="First Name"><br>
+                        <input type="text" name="" id="lastName" placeholder="Last Name"><br>
+                        <input type="email" name="" id="empEmail" placeholder="Email Id"><br>
+                        <select id="empGender">
+                            <option>----Select Gender----</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select><br>
+                        <input type="text" name="" id="ipAddress" placeholder="IP Address"><br>
+                        <input type="submit" name="" value="Submit  ">
+                        <input type="reset" value="Clear">
+                    </form>
+                </div>
+                <!-- modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<script src="../bootstrap/js/jquery-3.3.1.min.js"  type="text/javascript"></script>
+<script src="../bootstrap/js/popper.min.js" type="text/javascript"></script>
+<script src="../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../bootstrap/js/mdb.min.js" type="text/javascript"></script>
+
+<!-- <script async type="module" src="app.js"></script>     -->
+<script async src="jQureyScript.js"></script>    
+</body>
+</html>

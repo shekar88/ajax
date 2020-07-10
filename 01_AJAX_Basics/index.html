@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AJAX</title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/font-awesome-5.6.3.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/mdb.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">AJAX Basics</a>
+    </nav>
+
+    <!-- Button Section -->
+    <div class="container">
+        <!-- <button class="btn btn-primary">Hello AJAX</button> -->
+        <div class="row">
+            <div class="col text-center">
+                <button class="btn btn-primary" id="txtBtn">Text Data</button>
+                <button class="btn btn-success" id="jsonBtn">JSON Data</button>
+                <button class="btn btn-warning" id="apiBtn">API Data</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data section -->
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <h3>Text Data</h3>
+                    </div>
+                    <div class="card-body bg-light" id="txt-card">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-success">
+                        <h3>JSON Data</h3>
+                    </div>
+                    <div class="card-body bg-light" id="json-card">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-warning">
+                        <h3>API Data</h3>
+                    </div>
+                    <div class="card-body bg-dark" id="api-card">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<script src="../bootstrap/js/jquery-3.3.1.min.js"  type="text/javascript"></script>
+<script src="../bootstrap/js/popper.min.js" type="text/javascript"></script>
+<script src="../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../bootstrap/js/mdb.min.js" type="text/javascript"></script>
+
+<script src="app.js"></script>    
+<!-- <script src="jqueryScript.js"></script>     -->
+</body>
+</html>

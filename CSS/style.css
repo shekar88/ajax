@@ -1,0 +1,24 @@
+body {
+	/*background-color: red;*/
+}
+
+.myClas {
+	color: #fff;
+	background-color: #000;
+}
+
+.box {
+	background-color: #333;
+	color: #fff;
+	width: 700px;
+	height: 130px;
+	padding: 40px;
+	text-align: center;
+}
+
+.box2 {
+	background-color: red;
+	width: 100px;
+	height: 100px;
+	position: relative;
+}

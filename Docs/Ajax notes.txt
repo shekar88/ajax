@@ -1,0 +1,259 @@
+AJAX Notes
+
+// Video 1
+Ways of AJAX
+-> Regular AJAX Requests
+-> Fetch API
+-> Axios Library
+-> JQuery Library
+-> Node JS HTTP Module
+
+Regular AJAX with JS
+--------------------
+-> Basic AJAX Requests Flow	(Fetch API)
+-> Custom API with AJAX for GET, POST, PUT and DELETE (REST API)
+-> Example App for CRUD Operations
+-> Employee Portal App Using Custom AJAX API
+
+// Video 2
+
+// Video 3
+
+// Video 4
+
+// Video 5
+GET ->		To fetch data from a server		-> READ
+POST ->		To send some data to a server	-> CREATE
+PUT ->		To update data at server		-> UPDATE
+DELETE ->	To delete data at server		-> DELETE
+TEST->
+TRACE ->
+
+Step 1: Creata a new server (NodeJS)
+Step 2: Custom API with AJAX
+Step 3: Build an application
+
+Employee Portal Application
+---------------------------
+REST API
+
+GET 	-> /api/employees/			http://127.0.0.1:3000/api/employees/
+
+POST 	-> /api/employees/			http://127.0.0.1:3000/api/employees/ 	//id create by the server
+
+PUT 	-> /api/employees/:id		http://127.0.0.1:3000/api/employees/:id
+
+DELETE 	-> /api/employees/:id		http://127.0.0.1:3000/api/employees/:id
+
+Test REST API at Server
+-----------------------
+-> 1. Postman
+-> 2. Insomnia
+
+
+REST API with AJAX on Express Server
+------------------------------------
+Step 1: Create folder with your desire name
+		Goto that location using command promp or IDE Terminal
+		>npm init
+Step 2: Install modules (set of libraries) (express body-parser cors)
+		>npm install express body-parser cors --save
+		
+		Output Message
+		+ cors@2.8.5
+		+ express@4.17.1
+		+ body-parser@1.19.0
+		added 52 packages from 39 contributors and audited 53 packages in 7.828s
+		found 0 vulnerabilities
+		
+Step 3: Goto ----app.js
+
+		const express = require('express');
+		const app = express();
+		const bodyParser = require('body-parser');
+		const cors = require('cors');
+		const { request, response } = require('express');
+
+		const hostname = '127.0.0.1';
+		const port = 3000;
+
+		//configuare bodyParser
+		const jsonParser = bodyParser.json();
+		const urlEncodedParser = bodyParser.urlencoded({extended: false});
+		app.use(jsonParser);
+		app.use(urlEncodedParser);
+
+		//configure cors
+		app.use(cors());
+
+		//get request
+		app.get('/', (request, response) => {
+			response.send(`<h2>Welcome to Express Server of Employee Portal</h2>`);
+		});
+
+		app.listen(port, hostname, () => {
+			console.log(`Express server is Started at hppt://${hostname}:${port}`);
+		});
+
+Step 4: Create API Router
+		----------app.js
+		const apiRouter = require('./api/apiRouter');
+		// const { request, response } = require('express');
+		
+		//Configure the Router
+		app.use('/api',apiRouter);
+
+		-----------apiRouter.js
+		const express = require('express');
+		const router = express.Router();
+
+		//Employees Data
+		let employees = [
+			{
+				id: '1001',
+				first_name: 'Chandra',
+				last_name: 'Shekar',
+				email: 'cshekar@gmail.com',
+				gender: 'Male',
+				ip_address: '127.0.0.1'
+			},
+			{
+				id: '1002',
+				first_name: 'Kavi',
+				last_name: 'Krishna',
+				email: 'kk@gmail.com',
+				gender: 'Male',
+				ip_address: '127.0.0.2'
+			}
+		];
+		//REST API Configuration
+		//GET Employees
+		router.get('/employees', (request, response) => {
+			response.json(employees);
+		});
+
+		module.exports = router;
+
+		-------------package.json
+		"scripts": {
+			"start": "nodemon app.js"
+		},
+		
+		and goto terminal or command prompt 
+		>npm start
+		
+		if you got the error, you have to install nodemon
+		>npm install nodemon --save
+		
+		>npm start
+		
+		-------Output----
+		[nodemon] 2.0.4
+		[nodemon] to restart at any time, enter `rs`
+		[nodemon] watching path(s): *.*
+		[nodemon] watching extensions: js,mjs,json
+		[nodemon] starting `node app.js`
+		Express server is Started at hppt://127.0.0.1:3000
+
+Step 5: Impliement CRUD Operations function s in apiRouter.js
+		------------apiRouter.js
+
+		const express = require('express');
+		const router = express.Router();
+
+
+		//Employees Data
+		let employees = [
+			{
+				id: '_abcdef',
+				first_name: 'Chandra',
+				last_name: 'Shekar',
+				email: 'cshekar@gmail.com',
+				gender: 'Male',
+				ip_address: '127.0.0.1'
+			},
+			{
+				id: '_uvwxyz',
+				first_name: 'Kavi',
+				last_name: 'Krishna',
+				email: 'kk@gmail.com',
+				gender: 'Male',
+				ip_address: '127.0.0.2'
+			}
+		];
+		//REST API Configuration
+
+		//Get Unique Id
+		let getId = () => {
+			return '_'+Math.random().toString(36).substr(2,9);
+		};
+
+		//GET Employees
+		router.get('/employees', (request, response) => {
+			console.log(`GET Request Received at server.. ${new Date().toLocaleTimeString()}`);
+			response.json(employees);
+		});
+
+		//POST Request
+		router.post('/employees', (request, response) => {
+			let employee = {
+				id : getId(),
+				first_name : request.body.first_name,
+				last_name : request.body.last_name,
+				email : request.body.email,
+				gender :request.body.gender,
+				ip_address : request.body.ip_address
+			};
+			employees.push(employee);
+			console.log(`POST Request Received at server.. ${new Date().toLocaleTimeString()}`);
+			response.json({msg : 'POST Request is Success'});
+		});
+
+		//PUT Request
+		router.put('/employees/:id', (request,response) => {
+			//get emp id from the URL
+			let empId = request.params.id;
+			let updateEmployee = {
+				id: empId,
+				first_name: request.body.first_name,
+				last_name: request.body.last_name,
+				email: request.body.email,
+				gender: request.body.gender,
+				ip_address: request.body.ip_address
+			};
+			//update the existing employee data
+			let existingEmployee = employees.find((employee) => {
+				return employee.id = empId;
+			});
+			employees.splice(employees.indexOf(existingEmployee),1,updateEmployee);
+			console.log(`PUT Request Received at server.. ${new Date().toLocaleTimeString()}`);
+			response.json({msg: 'PUT Request is Success'});
+		});
+
+		//DELETE Request
+		router.delete('/employees/:id', (request,response) => {
+			let empId = request.params.id;
+			employees = employees.filter((employee) => {
+				return employee.id !== empId;
+			});
+			console.log(`DELETE Request at server ..${new Date().toLocaleTimeString()}`);
+			response.json({msg: 'DELETE Request is Success'});
+		});
+
+		module.exports = router;
+		
+// Video 7
+Test REST API at Server
+-----------------------
+-> 1. Postman
+-> 2. Insomnia
+
+// Video 8
+
+GET 	-> /api/employees/			http://127.0.0.1:3000/api/employees/
+
+POST 	-> /api/employees/			http://127.0.0.1:3000/api/employees/ 	//id create by the server
+
+PUT 	-> /api/employees/:id		http://127.0.0.1:3000/api/employees/:id
+
+DELETE 	-> /api/employees/:id		http://127.0.0.1:3000/api/employees/:id
